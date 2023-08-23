@@ -1,23 +1,14 @@
-import { useState, useEffect } from 'react';
-import { fetchProducts } from '../services/product';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchProducts } from '../redux/apiSlice';
 
-function useFetchProducts() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [error, setError] = useState<string | null>(null);
+const useFetchProducts = () => {
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchProducts()
-      .then(data => {
-        setProducts(data);
-        setError(null);
-      })
-      .catch(error => {
-        console.error(error);
-        setError("Error fetching data. Please try again later.");
-      });
-  }, []);
-
-  return { products, error };
-}
+    useEffect(() => {
+        // TODO 
+        dispatch(fetchProducts() as any);
+    }, [dispatch]);
+};
 
 export default useFetchProducts;

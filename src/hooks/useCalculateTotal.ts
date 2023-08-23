@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useCalculateTotal(basket: Basket, products: Product[]) {
+function useCalculateTotal(basket: ProductQuantity, products: Product[]) {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {

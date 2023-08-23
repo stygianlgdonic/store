@@ -4,11 +4,12 @@ import ProductItem from "../ProductItem";
 function ProductList({
   products,
   handleColorFilterChange,
-  handleAddToBasket,
-  handleRemoveFromBasket,
-  handleRemoveAllFromBasket,
+//   handleAddToCart,
+//   handleAddToBasket,
+//   handleRemoveFromBasket,
+//   handleRemoveAllFromBasket,
   colorFilter,
-  basket,
+//   basket,
 }: ProductListProps) {
   const filteredProducts = colorFilter
     ? products.filter((product: Product) => product.colour === colorFilter)
@@ -25,10 +26,11 @@ function ProductList({
           <ProductItem
             key={product.id}
             product={product}
-            onAddToBasket={handleAddToBasket}
-            onRemoveFromBasket={handleRemoveFromBasket}
-            onRemoveAllFromBasket={handleRemoveAllFromBasket}
-            basketQuantity={basket[product.id] || 0}
+            // handleAddToCart={handleAddToCart}
+            // onAddToBasket={handleAddToBasket}
+            // onRemoveFromBasket={handleRemoveFromBasket}
+            // onRemoveAllFromBasket={handleRemoveAllFromBasket}
+            // basketQuantity={basket[product.id] || 0}
           />
         ))}
       </div>
