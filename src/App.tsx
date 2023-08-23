@@ -1,37 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductList from "./components/ProductList";
-import { fetchProducts } from "./services/product";
+import useCalculateTotal from "./hooks/useCalculateTotal";
+import useFetchProducts from "./hooks/useFetchProducts";
 
 function App() {
-    const [products, setProducts] = useState<Product[]>([]);
     const [colorFilter, setColorFilter] = useState<string>("");
     const [basket, setBasket] = useState<Basket>({});
-    const [total, setTotal] = useState<number>(0);
-    const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        fetchProducts()
-            .then(data => {
-                setProducts(data);
-                setError(null);
-            })
-            .catch(error => {
-                console.error(error);
-                setError("Error fetching data. Please try again later.");
-            });
-    }, []);
-
-
-    useEffect(() => {
-        let newTotal = 0;
-        for (const productId in basket) {
-            const product = products.find((p) => p.id === Number(productId));
-            if (product) {
-                newTotal += product.price * basket[productId];
-            }
-        }
-        setTotal(newTotal);
-    }, [basket, products]);
+    const { products, error } = useFetchProducts();
+    const total = useCalculateTotal(basket, products);
 
     const handleAddToBasket = (productId: number) => {
         setBasket((prevBasket) => ({
