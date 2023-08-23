@@ -9,22 +9,12 @@ interface Product {
 
 interface ProductItemProps {
     product: Product;
-    // basketQuantity: number;
-    // handleAddToCart: (product: Product) => void;
-    // onAddToBasket: (productId: number) => void;
-    // onRemoveFromBasket: (productId: number) => void;
-    // onRemoveAllFromBasket: (productId: number) => void;
 }
 
 interface ProductListProps {
     products: Product[];
-    // handleAddToCart: (product: Product) => void;
-    handleColorFilterChange: (selectedColor: string) => void;
-    // handleAddToBasket: (productId: number) => void;
-    // handleRemoveFromBasket: (productId: number) => void;
-    // handleRemoveAllFromBasket: (productId: number) => void;
     colorFilter: string;
-    // basket: Basket;
+    handleColorFilterChange: (selectedColor: string) => void;
 }
 
 interface ProductQuantity {

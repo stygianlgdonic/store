@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import apiReducer from './apiSlice';
 import cartReducer from './cartSlice';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     api: apiReducer,
     cart: cartReducer,
   });
