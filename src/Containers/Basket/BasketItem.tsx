@@ -54,7 +54,7 @@ const BasketItem = ({
                     <button
                         onClick={handleRemoveFromProductQuantity}
                         className={
-                            "bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition-colors w-10"
+                            "bg-gray-400 text-white text-xl px-3 py-1 rounded-md hover:bg-gray-500 transition-colors w-full"
                         }
                         disabled={isDisabled}
                     >
@@ -62,14 +62,14 @@ const BasketItem = ({
                     </button>
                     <button
                         onClick={handleAddToProductQuantity}
-                        className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition-colors w-10"
+                        className="bg-gray-400 text-white text-xl px-3 py-1 rounded-md hover:bg-gray-500 transition-colors w-full"
                     >
                         {"+"}
                     </button>
                 </div>
                 <button
                     onClick={handleRemoveFromCart}
-                    className="bg-gray-500 text-white px-3 py-1 rounded-md hover:bg-gray-600 transition-colors"
+                    className="bg-red-100 text-red-600 px-3 py-1 rounded-md hover:bg-red-200 transition-colors"
                 >
                     Remove
                 </button>

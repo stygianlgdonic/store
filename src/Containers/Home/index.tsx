@@ -3,37 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList";
 import { fetchProducts } from "../../redux/apiSlice";
 import { Link } from "react-router-dom";
+import { RootState } from "../../redux/store";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "@reduxjs/toolkit"
+import cartLogo from "../../assets/icons/cart.svg";
 
 function Home() {
     const [colorFilter, setColorFilter] = useState<string>("");
-    const dispatch = useDispatch();
-    // any
-    const products = useSelector((state: any) => state.api.products);
-    // const total = useCalculateTotal(basket, products);
+    const dispatch: ThunkDispatch<RootState, void, Action> = useDispatch();
+    const products = useSelector((state: RootState) => state.api.products);
+    const { items } = useSelector((state: RootState) => state.cart);
     useEffect(() => {
-        // TODO
-        dispatch(fetchProducts() as any);
+        dispatch(fetchProducts());
     }, [dispatch]);
-
-
-    // const handleAddToCart = (product: Product) => {
-    //     console.log({ product })
-    //     dispatch(addToCart(product));
-    // };
-
-    //   const handleRemoveFromCart = (productId: number) => {
-    //     dispatch(removeFromCart(productId));
-    //   };
-
-    
-
-    // const handleRemoveAllFromBasket = (productId: number) => {
-    //     if (basket[productId]) {
-    //         const newBasket = { ...basket };
-    //         delete newBasket[productId];
-    //         setBasket(newBasket);
-    //     }
-    // };
 
     const handleColorFilterChange = (selectedColor: string) => {
         setColorFilter(selectedColor);
@@ -41,19 +23,19 @@ function Home() {
 
     return (
         <div className="p-4">
-            <h1 className="text-4xl font-bold mb-6 text-center text-blue-600">
+            <h1 className="text-4xl font-bold mb-6 text-center text-green-600">
                 Product Listings
             </h1>
-            <Link to={"/cart"}>CART</Link>
+            <div className="flex justify-end px-14">
+                <Link to={"/cart"} className="flex hover:bg-gray-300 h-14 w-14 rounded-xl justify-center">
+                    <img src={cartLogo} alt="Cart" width={30} height={30} />
+                    <p className="text-xl">{`(${items.length})`}</p>
+                </Link>
+            </div>
             <ProductList
                 products={products}
                 handleColorFilterChange={handleColorFilterChange}
-                // handleAddToCart={handleAddToCart}
-                // handleAddToBasket={handleAddToBasket}
-                // handleRemoveFromBasket={handleRemoveFromBasket}
-                // handleRemoveAllFromBasket={handleRemoveAllFromBasket}
                 colorFilter={colorFilter}
-                // basket={basket}
             />
         </div>
     );
