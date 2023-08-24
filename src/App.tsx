@@ -5,6 +5,8 @@ import {
 import Basket from "./Containers/Basket";
 import Home from "./Containers/Home";
 import ErrorPage from "./error-page";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
     {
@@ -21,7 +23,10 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <RouterProvider router={router} />
+        <>
+            <RouterProvider router={router} />
+            <ToastContainer />
+        </>
     );
 }
 

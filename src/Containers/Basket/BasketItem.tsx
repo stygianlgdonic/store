@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updateCart } from "../../redux/cartSlice";
 import { RootState } from "../../redux/store";
+import { toast } from 'react-toastify';
 
 const BasketItem = ({
     product
@@ -36,6 +37,16 @@ const BasketItem = ({
 
     const handleRemoveFromCart = () => {
         dispatch(removeFromCart(id))
+        toast.success('Item removed!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
 
