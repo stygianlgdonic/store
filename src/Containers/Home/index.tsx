@@ -13,6 +13,10 @@ function Home() {
     const dispatch: ThunkDispatch<RootState, void, Action> = useDispatch();
     const products = useSelector((state: RootState) => state.api.products);
     const { items } = useSelector((state: RootState) => state.cart);
+    const cartItems = items.reduce((acc, item) => {
+        const quantity = item.quantity || 1;
+        return acc + quantity;
+    }, 0)
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
@@ -29,7 +33,7 @@ function Home() {
             <div className="flex justify-end px-14">
                 <Link to={"/cart"} className="flex hover:bg-gray-300 h-14 w-14 rounded-xl justify-center">
                     <img src={cartLogo} alt="Cart" width={30} height={30} />
-                    <p className="text-xl">{`(${items.length})`}</p>
+                    <p className="text-xl">{`(${cartItems})`}</p>
                 </Link>
             </div>
             <ProductList
